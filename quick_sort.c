@@ -1,8 +1,8 @@
-// Quick sort in C
+                              // Quick sort algorithm code
 
 #include <stdio.h>
 
-// function to swap elements
+// function to swap two numbers
 void swap(int *a, int *b) {
   int t = *a;
   *a = *b;
@@ -12,69 +12,62 @@ void swap(int *a, int *b) {
 // function to find the partition position
 int partition(int array[], int low, int high) {
   
-  // select the rightmost element as pivot
+  // selecting the rightmost element as pivot
   int pivot = array[high];
   
   // pointer for greater element
   int i = (low - 1);
 
-  // traverse each element of the array
-  // compare them with the pivot
+  // traversing through each element of the array and comparing them with the pivot
   for (int j = low; j < high; j++) {
     if (array[j] <= pivot) {
-        
-      // if element smaller than pivot is found
-      // swap it with the greater element pointed by i
       i++;
-      
-      // swap element at i with element at j
+      // swapping element at i with element at j
       swap(&array[i], &array[j]);
     }
   }
-
-  // swap the pivot element with the greater element at i
+  // swapping the pivot element with the greater element at i
   swap(&array[i + 1], &array[high]);
   
-  // return the partition point
+  // returning to the partition point
   return (i + 1);
 }
 
+// function to implement quick sort
 void quickSort(int array[], int low, int high) {
   if (low < high) {
     
-    // find the pivot element such that
-    // elements smaller than pivot are on left of pivot
-    // elements greater than pivot are on right of pivot
+    // finding the pivot element
     int pi = partition(array, low, high);
     
-    // recursive call on the left of pivot
+    //calling quick sort for the left of pivot
     quickSort(array, low, pi - 1);
     
-    // recursive call on the right of pivot
+    //calling quick sort for the right of pivot
     quickSort(array, pi + 1, high);
   }
 }
 
-// function to print array elements
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; ++i) {
-    printf("%d  ", array[i]);
-  }
-  printf("\n");
-}
-
-// main function
 int main() {
-  int data[] = {8, 7, 2, 1, 0, 9, 6};
+
+	int n;
+	printf("Enter the Size of array:\n");
+	scanf("%d",&n);
+
+	int arr[n];
+	printf("Enter elements of the Array:\n");
+	for(int i=0;i<n;i++){
+		scanf("%d",&arr[i]);
+	}
   
-  int n = sizeof(data) / sizeof(data[0]);
+  quickSort(arr, 0, n - 1);  // calling the quick sort function
   
-  printf("Unsorted Array\n");
-  printArray(data, n);
-  
-  // perform quicksort on data
-  quickSort(data, 0, n - 1);
-  
-  printf("Sorted array in ascending order: \n");
-  printArray(data, n);
+	// printing the sorted array
+	printf("the Sorted array is: \n");
+	for (int i = 0; i < n; i++){
+	printf("%d ", arr[i]);
+	}
+	printf("\n");
+
+  return 0;
 }

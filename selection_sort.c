@@ -1,47 +1,52 @@
-// C program for implementation of selection sort
+											// selection sort algorithm code
 #include <stdio.h>
 
-void swap(int *xp, int *yp)
+void swap(int *x, int *y) // function to swap two number
 {
-	int temp = *xp;
-	*xp = *yp;
-	*yp = temp;
+	int temp = *x;
+	*x = *y;
+	*y = temp;
 }
 
+// function to implement selection sort
 void selectionSort(int arr[], int n)
 {
 	int i, j, min_idx;
 
-	// One by one move boundary of unsorted subarray
+	// One by one moveing the boundary of unsorted subarray
 	for (i = 0; i < n-1; i++)
 	{
-		// Find the minimum element in unsorted array
-		min_idx = i;
+		min_idx = i; // minimum element in unsorted array
 		for (j = i+1; j < n; j++)
 		if (arr[j] < arr[min_idx])
 			min_idx = j;
 
-		// Swap the found minimum element with the first element
+		// Swapping the minimum element with the first element
 		swap(&arr[min_idx], &arr[i]);
 	}
 }
 
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-	int i;
-	for (i=0; i < size; i++)
-		printf("%d ", arr[i]);
-	printf("\n");
-}
-
-// Driver program to test above functions
 int main()
 {
-	int arr[] = {64, 25, 12, 22, 11};
-	int n = sizeof(arr)/sizeof(arr[0]);
-	selectionSort(arr, n);
-	printf("Sorted array: \n");
-	printArray(arr, n);
+	int n;
+	printf("Enter the Size of array:\n");
+	scanf("%d",&n);
+
+	int arr[n];
+	printf("Enter elements of the Array:\n");
+	for(int i=0;i<n;i++){
+		scanf("%d",&arr[i]);
+	}
+
+	selectionSort(arr, n); // calling the selection sort function
+
+	// printing the sorted array
+	printf("the Sorted array is: \n");
+	for (int i = 0; i < n; i++){
+	printf("%d ", arr[i]);
+	}
+	printf("\n");
+
 	return 0;
+
 }
