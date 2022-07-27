@@ -10,6 +10,11 @@ void subtraction(long int num1,long int num2)
     printf("the value after subtracting the two given number is: %ld", num1 - num2);
 }
 
+void multiplication(long int num1,long int num2)
+{
+    printf("the value after multiplying the two given number is: %ld", num1 * num2);
+}
+
 int main()
 {
     long int num1;
@@ -19,7 +24,7 @@ int main()
     printf("please Enter num2:\n");
     scanf("%ld", &num2);
     int to_do;
-    printf("please enter \n 1 for addition \n 2 for subtraction\n ");
+    printf("please enter \n 1 for addition \n 2 for subtraction\n 3 for multiplication \n");
     scanf("%d", &to_do);
     switch (to_do)
     {
@@ -29,6 +34,10 @@ int main()
     
     case 2:
         subtraction(num1 , num2);
+        break;
+    
+    case 3:
+        multiplication(num1 , num2);
         break;
     
     default:
